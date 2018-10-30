@@ -14,13 +14,16 @@ from django.template.loader import get_template
 
 
 def book_test(request, **kwargs):
-    t = get_template('index.html')
+    t = get_template('book/index.html')
     html = t.render()
     return HttpResponse(html)
     # return HttpResponse('hhhhh')
 
+
 def index(request, **kwargs):
-    return render(request, 'index.html')
+    name = 'taka'
+    return render(request, 'book/index.html', context={'name': name})
+
 
 def article(request, **kwargs):
     if kwargs.get('switch') == 'true':
@@ -31,6 +34,3 @@ def article(request, **kwargs):
 
 def article_new(request, **kwargs):
     return HttpResponse('这是新页面')
-
-
-
