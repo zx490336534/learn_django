@@ -4,3 +4,6 @@ from django.http import HttpResponse
 
 def book_index(requests):
     return HttpResponse('这是book的主页')
+
+def book_test(request):
+    return HttpResponse('hhhhh')
