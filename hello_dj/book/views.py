@@ -10,9 +10,17 @@ def book_index(requests, **kwargs):
     return HttpResponse('这是book的主页')
 
 
-def book_test(request):
-    return HttpResponse('hhhhh')
+from django.template.loader import get_template
 
+
+def book_test(request, **kwargs):
+    t = get_template('index.html')
+    html = t.render()
+    return HttpResponse(html)
+    # return HttpResponse('hhhhh')
+
+def index(request, **kwargs):
+    return render(request, 'index.html')
 
 def article(request, **kwargs):
     if kwargs.get('switch') == 'true':
@@ -23,3 +31,6 @@ def article(request, **kwargs):
 
 def article_new(request, **kwargs):
     return HttpResponse('这是新页面')
+
+
+
