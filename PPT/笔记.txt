@@ -1,0 +1,15 @@
+1、创建第一个项目：
+django-admin startproject hello_dj
+2、运行
+python manage.py runserver 0:8001
+python manage.py runserver 123.56.13.233:8001
+3、生成app
+python manage.py startapp book
+Pycharm-Tool-Run manage.py Task...
+4、默认支持的转换器
+path('hello/<name>/<int:age>/', views.hello_test)
+str默认
+int匹配正整数包含0
+slug匹配字母数字以及横杠下划线组成的字符串
+uuid匹配个数的uuid
+path匹配任何非空字符串，包含路径分隔符
