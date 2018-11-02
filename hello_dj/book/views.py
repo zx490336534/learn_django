@@ -44,7 +44,10 @@ ap = Fruits('Apple', 'red')
 def index(request, **kwargs):
     name = 'taka'
     return render(request, 'book/book_index.html', context={'name': name,
+                                                            'name2':None,
                                                             'age': 18,
+                                                            'num1':12,
+                                                            'num2':13,
                                                             'ls': ls,
                                                             'dict': dt,
                                                             'ap': ap,

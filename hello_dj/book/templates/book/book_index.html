@@ -24,11 +24,13 @@
 {{ ap.say }}<br>
 {{ ap.name }}<br>
 {{ ap.color }}<br>
+{{ num1|add:num2 }}<br>
 原始的：{{ str }}<br>
 变小写：{{ str|lower }}<br>
 首字母大写:{{ str|lower|capfirst }}<br>
 去空格：{{ str|cut:' ' }}<br>
-默认值：{{ tp|default:'游客' }}<br>
+没有定义默认值：{{ tp|default:'游客' }}<br>
+定义None默认值：{{ name2|default_if_none:'游客222' }}<br>
 显示部分最后以...表示：{{ str|truncatechars:7 }}<br>
 显示部分单词最后以...表示 {{ str|truncatewords:2 }}<br>
 显示不包括标签的7个内容最后以...表示：{{ html|truncatechars_html:7 }}<br>
