@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <title>{% block title %}
+    默认的标题
+    {% endblock %}
+    </title>
     <style>
         * {
             margin: 0;
@@ -14,10 +17,10 @@
 <script>
 
 </script>
-哈哈哈哈哈主页
-你好{{ book_name }}
-{% with book_name as bn %}
-    {{ bn }}
-{% endwith %}
+{% block content %}
+默认的内容
+{% endblock %}
+
+<br>哈哈哈哈
 </body>
 </html>

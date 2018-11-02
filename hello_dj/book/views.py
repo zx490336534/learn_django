@@ -13,9 +13,9 @@ def book_index(requests, **kwargs):
 from django.template.loader import get_template
 
 
-def book_test(request, **kwargs):
+def book_test(request, book_name, **kwargs):
     t = get_template('book/index.html')
-    html = t.render()
+    html = t.render({'book_name':book_name})
     return HttpResponse(html)
     # return HttpResponse('hhhhh')
 
@@ -44,17 +44,18 @@ ap = Fruits('Apple', 'red')
 def index(request, **kwargs):
     name = 'taka'
     return render(request, 'book/book_index.html', context={'name': name,
-                                                            'name2':None,
+                                                            'name2': None,
+
                                                             'age': 18,
-                                                            'num1':12,
-                                                            'num2':13,
+                                                            'num1': 12,
+                                                            'num2': 13,
                                                             'ls': ls,
                                                             'dict': dt,
                                                             'ap': ap,
                                                             'str': 'THIS IS A LIST!',
-                                                            'html':'<h1>Hello django</h1>',
-                                                            'float':3.1415926,
-                                                            'now':datetime.datetime.now,#加括号现在调用，不加括号在模板里调用
+                                                            'html': '<h1>Hello django</h1>',
+                                                            'float': 3.1415926,
+                                                            'now': datetime.datetime.now,  # 加括号现在调用，不加括号在模板里调用
                                                             })
 
 
@@ -68,5 +69,15 @@ def article(request, **kwargs):
 def article_new(request, **kwargs):
     return HttpResponse('这是新页面')
 
-def static_test(request,**kwargs):
-    return render(request,'book/static_test.html')
+
+def static_test(request, **kwargs):
+    return render(request, 'book/static_test.html')
+
+
+def tag_test(request, **kwargs):
+    return render(request, 'book/tag_test.html',
+                  context={'ls': ls,
+                           'tp': tp,
+                           'name': 'taka',
+                           'html': '<h1>Hello django</h1>',
+                           })

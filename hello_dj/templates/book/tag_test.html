@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+{% if name == 'taka' %}
+    现在是taka登陆的
+{% elif name == 'xiaopo' %}
+    这是小泼老师
+{% else %}
+    哈哈哈
+{% endif %}
+<br>
+{% for i in ls %}
+    {% for j in tp %}
+        {#多层for循环嵌套，上一层的for#}
+        {% if forloop.parentloop.counter == 2 %}
+            <h2>{{ i }} {{ j }}</h2>
+            {# {% else %}#}
+            {# {{ i }}#}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+<br>
+{% for i in ls1 %}
+    {{ i }}
+{% empty %}
+    hhhhh
+{% endfor %}
+<br>
+{#页面跳转#}
+<a href="/book/index">跳转到过滤器1</a>
+<br>
+<a href="{% url 'book_index' %}">跳转到过滤器2</a>
+<br>
+<a href="{% url 'book_test' 'python' %}">跳转到index,传参</a>
+<br>
+{#关闭自动转义#}
+原始:{{ html }}<br>
+过滤器：{{ html|safe }}<br>
+标签（针对一个块）：
+{% autoescape off %}
+    {{ html }}<br>
+    xxxxxxxxxxxxxx
+    {{ html }}<br>
+{% endautoescape %}
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'music/base.html' %}
+{% block title %}
+    music
+{% endblock %}
+{% block content %}
+    {#继承#}
+    {{ block.super }}
+    这是musci的主页
+    {% include 'music/ss.html' %}
+{% endblock %}
