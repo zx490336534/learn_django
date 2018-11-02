@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>静态文件引用</title>
+{#    <link rel="stylesheet" href="/static/css/mystyle.css">#}
+    <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+{#方法一#}
+{#<script src="/static/js/myjs.js"></script>#}
+{#<img src="/static/img/tu.jpg" alt="">#}
+{#方法二#}
+<script src="{% static "js/myjs.js" %}"></script>
+<img src="{% static "img/tu.jpg" %}" alt="">
+</body>
+</html>

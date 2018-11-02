@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<script>
+
+</script>
+欢迎{{ name }}
+这是book_index页面
+<br>
+{{ ls.0 }}
+<br>
+{{ dict.a }}
+<br>
+{{ ap.say }}<br>
+{{ ap.name }}<br>
+{{ ap.color }}<br>
+原始的：{{ str }}<br>
+变小写：{{ str|lower }}<br>
+首字母大写:{{ str|lower|capfirst }}<br>
+去空格：{{ str|cut:' ' }}<br>
+默认值：{{ tp|default:'游客' }}<br>
+显示部分最后以...表示：{{ str|truncatechars:7 }}<br>
+显示部分单词最后以...表示 {{ str|truncatewords:2 }}<br>
+显示不包括标签的7个内容最后以...表示：{{ html|truncatechars_html:7 }}<br>
+显示包括标签的7个内容最后以...表示：{{ html|truncatechars:7 }}<br>
+列表切割：{{ ls|slice:'1:3' }}<br>
+去掉标签：{{ html|striptags }}<br>
+去掉转义：{{ html|safe }}<br>
+默认情况下：{{ float }}<br>
+默认情况下：{{ float|floatformat:'2' }}<br>
+默认时间：{{ now }}<br>
+日期：{{ now|date:'Y年m月d日 H:i:s' }}<br>
+时间：<br>
+</body>
+</html>

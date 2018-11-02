@@ -1,0 +1,67 @@
+django框架>>写网站后台
+
+服务器: ubuntu系统
+客户端: 浏览器 
+
+创建项目:
+虚拟环境: 为我们项目创建属于它自己运行环境
+mkvirtualenv  -p  /usr/bin/python3  envname
+安装django   
+
+python第三方库: pip install django==2.1
+linux 系统的命令: sudo apt-get install  tree
+
+linux >> python >>django
+linux >> tree
+
+
+2种创建项目的方式:
+
+通用  命令行安装>>代码同步
+django-admin startproject projectname
+
+启动服务
+2种方式
+python manage.py runserver 0:8000
+
+
+url 路由 和 视图函数
+ 
+include  
+kwarg  往视图里面传参
+name  取名字, 跟路由一对一   重定向
+path(匹配规则,视图函数,kwargs,name)
+
+重定向: redirect  reverse
+
+视图函数: request(请求)  response(响应)
+
+渲染模板
+html:  >>  图片(静态文件)
+render(request,'模板路径',上下文)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
