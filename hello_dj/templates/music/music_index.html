@@ -1,4 +1,5 @@
 {% extends 'music/base.html' %}
+{% load filter_test %}
 {% block title %}
     music
 {% endblock %}
@@ -7,4 +8,13 @@
     {{ block.super }}
     这是musci的主页
     {% include 'music/ss.html' %}
+
+    自带的：{{ str|lower }}<br>
+    自己创建的1：{{ str|my_lower }}<br>
+    自己创建的2：{{ str|my_cut:'IS' }}<br>
+
+
+
+
+
 {% endblock %}
