@@ -25,6 +25,21 @@
     {% endfor %}
 {% endfor %}
 <br>
+{% for i in ls %}
+{#当前迭代次数，下标从1开始#}
+    {{ forloop.counter }}<br>
+{#当前迭代次数，下标从0开始<br>#}
+    {{ forloop.counter0 }}<br>
+{#下标从大到小#}
+    {{ forloop.revcounter }}<br>
+    {{ forloop.revcounter0 }}<br>
+{#当前是否为第一次迭代#}
+    {{ forloop.first }}<br>
+{#当前是否为最后一次迭代#}
+    {{ forloop.last }}<br>
+{% endfor %}
+
+<br>
 {% for i in ls1 %}
     {{ i }}
 {% empty %}
@@ -47,6 +62,11 @@
     xxxxxxxxxxxxxx
     {{ html }}<br>
 {% endautoescape %}
+<br>
+{% ifequal num1 12  %}
+    两个数相等
+
+{% endifequal %}
 
 </body>
 </html>

@@ -80,4 +80,7 @@ def tag_test(request, **kwargs):
                            'tp': tp,
                            'name': 'taka',
                            'html': '<h1>Hello django</h1>',
+                           'num1':12,
+                           'num2':24,
+
                            })
