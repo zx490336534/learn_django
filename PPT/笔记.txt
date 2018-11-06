@@ -13,3 +13,8 @@ int匹配正整数包含0
 slug匹配字母数字以及横杠下划线组成的字符串
 uuid匹配个数的uuid
 path匹配任何非空字符串，包含路径分隔符
+
+5、创建映射
+python manage.py makemigrations book
+6、创建表
+python manage.py migrate book
