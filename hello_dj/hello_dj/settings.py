@@ -73,10 +73,20 @@ WSGI_APPLICATION = 'hello_dj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+        'NAME': 'mydb',                     # 数据库名称
+        'USER': 'root',                     # 连接数据库的用户名
+        'PASSWORD': '123456',               # 连接数据库的密码
+        'HOST': '127.0.0.1',                # mysql服务器的域名和IP地址
+        'PORT': '3306',                     # mysql的一个端口号，默认3306
     }
 }
 
@@ -103,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Shanghai' #修改时区
+TIME_ZONE = 'Asia/Shanghai'  # 修改时区
 
 USE_I18N = True
 
