@@ -8,6 +8,9 @@ class User(models.Model):
     name = models.CharField(max_length=30)  # char类型最大长度30
     age = models.IntegerField()  # Int类型
 
+    def __str__(self):
+        return f"User<id={self.id}, name={self.name}, age={self.age}>"
+
 
 class Test1(models.Model):
     name = models.CharField(max_length=30)
