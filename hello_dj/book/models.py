@@ -7,14 +7,17 @@ class User(models.Model):
     id = models.AutoField(primary_key=True)  # 自增长,可以省略
     name = models.CharField(max_length=30)  # char类型最大长度30
     age = models.IntegerField()  # Int类型
+    city = models.CharField(max_length=100,null='浙江') #设置为空
+    note = models.CharField(max_length=100,null=True) #设置为空
+
 
     def __str__(self):
         return f"User<id={self.id}, name={self.name}, age={self.age}>"
 
 
-class Test1(models.Model):
-    name = models.CharField(max_length=30)
-    age = models.IntegerField()
+# class Test1(models.Model):
+#     name = models.CharField(max_length=30)
+#     age = models.IntegerField()
 
 # 配置连接
 # 创建模型类
