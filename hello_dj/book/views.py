@@ -131,7 +131,35 @@ def search_user(request, **kwargs):
 
     rs = User.objects.filter(name='句号1')  # queryset对象
     print(rs)
-
+    rs = User.objects.filter(name='句号1',age=20)
+    print(rs)
+    rs1 = User.objects.order_by('age') #正序
+    rs2 = User.objects.order_by('-age') #加负号倒叙
+    print(rs1)
+    print(rs2)
+    rs = User.objects.all().values() #字典的形式
+    print(rs)
+    rs = User.objects.count() #查看总共多少数据
+    print(rs)
+    #查询条件
+    rs = User.objects.filter(name__exact='句号1') #等于
+    print(rs)
+    rs = User.objects.filter(name__contains='xiao') #包含
+    print(rs)
+    rs = User.objects.filter(name__startswith='xiao') #以什么开头 istartswith 忽略大小写
+    print(rs)
+    rs = User.objects.filter(name__endswith='xiao') #以什么开头 iendswith忽略大小写
+    print(rs)
+    rs = User.objects.filter(age__in=[18,19,20]) #18,19,20
+    print(rs)
+    rs = User.objects.filter(age__range=(18,20)) #18,19,20 包含20
+    print(rs)
+    rs = User.objects.filter(age__gt=18) #大于18
+    rs = User.objects.filter(age__gte=18) #大于等于18
+    rs = User.objects.filter(age__lt=18) #小于18
+    rs = User.objects.filter(age__lte=18) #小于等于18
+    rs = User.objects.filter(age__isnull=True) #判断是否为空
+    print(rs)
     return HttpResponse('查询数据成功')
 
 
