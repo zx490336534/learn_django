@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 # Create your views here.
 import datetime
-from .models import User
+from .models import User, F_test
 from django.http import HttpResponse
 
 
@@ -116,6 +116,12 @@ def add_user3(request, **kwargs):
     return HttpResponse('添加数据成功3')
 
 
+def add_user4(request, **kwargs):
+    info = [('xixi', 20), ('haha', 18)]
+    for name, age in info:
+        User.objects.create(name=name, age=age)
+
+
 def search_user(request, **kwargs):
     rs = User.objects.all()  # 防护queryset对象
     print(rs[0])  # 索引取值
@@ -131,41 +137,41 @@ def search_user(request, **kwargs):
 
     rs = User.objects.filter(name='句号1')  # queryset对象
     print(rs)
-    rs = User.objects.filter(name='句号1',age=20)
+    rs = User.objects.filter(name='句号1', age=20)
     print(rs)
-    rs1 = User.objects.order_by('age') #正序
-    rs2 = User.objects.order_by('-age') #加负号倒叙
+    rs1 = User.objects.order_by('age')  # 正序
+    rs2 = User.objects.order_by('-age')  # 加负号倒叙
     print(rs1)
     print(rs2)
-    rs = User.objects.all().values() #字典的形式
+    rs = User.objects.all().values()  # 字典的形式
     print(rs)
-    rs = User.objects.count() #查看总共多少数据
+    rs = User.objects.count()  # 查看总共多少数据
     print(rs)
-    #查询条件
-    rs = User.objects.filter(name__exact='句号1') #等于
+    # 查询条件
+    rs = User.objects.filter(name__exact='句号1')  # 等于
     print(rs)
-    rs = User.objects.filter(name__contains='xiao') #包含
+    rs = User.objects.filter(name__contains='xiao')  # 包含
     print(rs)
-    rs = User.objects.filter(name__startswith='xiao') #以什么开头 istartswith 忽略大小写
+    rs = User.objects.filter(name__startswith='xiao')  # 以什么开头 istartswith 忽略大小写
     print(rs)
-    rs = User.objects.filter(name__endswith='xiao') #以什么开头 iendswith忽略大小写
+    rs = User.objects.filter(name__endswith='xiao')  # 以什么开头 iendswith忽略大小写
     print(rs)
-    rs = User.objects.filter(age__in=[18,19,20]) #18,19,20
+    rs = User.objects.filter(age__in=[18, 19, 20])  # 18,19,20
     print(rs)
-    rs = User.objects.filter(age__range=(18,20)) #18,19,20 包含20
+    rs = User.objects.filter(age__range=(18, 20))  # 18,19,20 包含20
     print(rs)
-    rs = User.objects.filter(age__gt=18) #大于18
-    rs = User.objects.filter(age__gte=18) #大于等于18
-    rs = User.objects.filter(age__lt=18) #小于18
-    rs = User.objects.filter(age__lte=18) #小于等于18
-    rs = User.objects.filter(age__isnull=True) #判断是否为空
+    rs = User.objects.filter(age__gt=18)  # 大于18
+    rs = User.objects.filter(age__gte=18)  # 大于等于18
+    rs = User.objects.filter(age__lt=18)  # 小于18
+    rs = User.objects.filter(age__lte=18)  # 小于等于18
+    rs = User.objects.filter(age__isnull=True)  # 判断是否为空
     print(rs)
     return HttpResponse('查询数据成功')
 
 
 def delete_user(request, **kwargs):
-    User.objects.filter(name='句号1').delete() #多个都会被删除
-    User.objects.get(id=1).delete() #查询到了就可以删除
+    User.objects.filter(name='句号1').delete()  # 多个都会被删除
+    User.objects.get(id=1).delete()  # 查询到了就可以删除
     return HttpResponse('删除数据成功')
 
 
@@ -175,3 +181,15 @@ def update_user(request, **kwargs):
     rs.name = '黑炭'
     rs.save()
     return HttpResponse('更新数据成功')
+
+
+def f_test(request,**kwargs):
+    # F_test.objects.create(name='小明',age=18)
+    xm1 = F_test.objects.get(name='小明') #单个实例
+    # xm1.note = '我叫小明'
+    # xm1.save()
+    xm2 = F_test.objects.filter(name='小明')[0] #queryset
+    # xm2.update(note='哈哈哈')#不会触发 auto_now的自动修改
+    xm2.note = 'AAA'
+    xm2.save()
+    return HttpResponse('HHHHH')

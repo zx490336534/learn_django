@@ -18,4 +18,5 @@ urlpatterns = [
     path('search/',views.search_user),
     path('delete/',views.delete_user),
     path('update/',views.update_user),
+    path('f_test/',views.f_test),
 ]
