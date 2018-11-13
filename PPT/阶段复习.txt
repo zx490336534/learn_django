@@ -1,0 +1,47 @@
+必须掌握:
+django项目的创建
+url配置: path,include,name,int转换器
+view视图: render(request,'模板路径',context={})     HttpResponse
+模板变量: 上下文,{{变量}}   {{变量.索引}}   {{变量|过滤器}}  {{变量|过滤器:'参数'}}
+模板标签: {% 标签名 参数  %}
+if  for  load加载(static)   extend   block    include   url  static
+if 参数 == 名字 必须要有空格
+
+设置模板路径
+templates
+设置静态文件路径
+static
+
+重定向 redirect(url路径)
+重定向 redirect(reverse('url-name'))
+
+数据库信息配置
+模型类的创建
+python manage.py makemigrations
+python manage.py migrate
+数据的增删改查
+
+
+
+
+了解:
+url配置:kwarg
+templatetags
+自定义模板过滤器,
+自定义标签
+with
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

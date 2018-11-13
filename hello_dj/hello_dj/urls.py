@@ -21,4 +21,5 @@ urlpatterns = [
     path('book/', include('book.urls'),{'switch':'true'}),
     path('music/', include('music.urls')),
     path('db/', include('db.urls')),
+    path('blog/', include('blog.urls')),
 ]

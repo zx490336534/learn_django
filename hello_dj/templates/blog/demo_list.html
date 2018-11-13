@@ -1,0 +1,27 @@
+{% extends 'blog/demo_base.html' %}
+{% block title %}
+    文章列表
+{% endblock %}
+
+{% block bodyblock %}
+    <h1 style="margin-left: 100px">文章列表</h1>
+    <table width="400px">
+        <thead style="font-size:20px">
+        <tr>
+            <th>标题</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for blog in blog_list %}
+            <tr>
+                <th><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></th>
+                <th><a href="{% url 'blog_edit' blog.id %}">编辑</a> | <a href="{% url 'blog_delete' blog.id %}">删除 </a></th>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}
