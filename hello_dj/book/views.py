@@ -183,13 +183,28 @@ def update_user(request, **kwargs):
     return HttpResponse('更新数据成功')
 
 
-def f_test(request,**kwargs):
+from django.db.models import Avg, Max, Min, Sum, F, Q
+
+
+def f_test(request, **kwargs):
     # F_test.objects.create(name='小明',age=18)
-    xm1 = F_test.objects.get(name='小明') #单个实例
+    xm1 = F_test.objects.get(name='小明')  # 单个实例
     # xm1.note = '我叫小明'
     # xm1.save()
-    xm2 = F_test.objects.filter(name='小明')[0] #queryset
+    xm2 = F_test.objects.filter(name='小明')[0]  # queryset
     # xm2.update(note='哈哈哈')#不会触发 auto_now的自动修改
     xm2.note = 'AAA'
     xm2.save()
+    rs = User.objects.all().aggregate(Avg('age'), Max('age'), Min('age'), Sum('age'))  # 聚合
+    print(rs)
+
+    # rs = User.objects.all().update(age=F('age')+1) #拿到原来的值，+1
+    # 名字为xiaoming xiaohong
+    rs = User.objects.filter(Q(name='xiaoming') | Q(name='xiaohong'))
+    print(rs)
+    # 查询名字为xiaoming 年龄不等于20的
+    rs = User.objects.filter(Q(name='xiaoming')&~Q(age=20))
+    print(rs)
+    rs = User.objects.filter(Q(name='xiaoming')&~Q(age=21))
+    print(rs)
     return HttpResponse('HHHHH')

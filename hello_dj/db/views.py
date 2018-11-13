@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 from .models import Department, Student, Stu_detail, Course
+from django.db.models import Count
 
 
 def test(request):
@@ -108,3 +109,37 @@ def test3(request):
     print(rs)
 
     return HttpResponse('XXX')
+
+
+def test4(request):
+    rs = Student.objects.values('dept')
+    print(rs)
+    # <QuerySet [{'dept': 1}, {'dept': 1}, {'dept': 2}, {'dept': 2}, {'dept': 3}, {'dept': 3}, {'dept': 3}]>
+
+    rs = Student.objects.values('dept').annotate(count=Count('dept')).values('dept_id', 'count')  # 分组查询
+    print(rs)
+    # <QuerySet [{'dept_id': 1, 'count': 2}, {'dept_id': 2, 'count': 2}, {'dept_id': 3, 'count': 3}]>
+
+    rs = Student.objects.values('dept').annotate(count=Count('dept')).values('dept__d_name', 'count')
+    print(rs)
+    # <QuerySet [{'dept__d_name': '软件学院', 'count': 2}, {'dept__d_name': '挖掘机学院', 'count': 2}, {'dept__d_name': '文学院', 'count': 3}]>
+
+
+    # 多对多
+    rs = Course.objects.all()
+    print(rs)
+    # 课程的学生
+    rs = Course.objects.all().annotate(count=Count('student')).values('c_name', 'count')
+    print(rs)
+    # <QuerySet [{'c_name': 'python', 'count': 0}, {'c_name': 'java', 'count': 0}, {'c_name': '日语', 'count': 0}, {'c_name': '日语', 'count': 0}]>
+
+
+    # 学生的课程
+    rs = Student.objects.all().annotate(count=Count('course')).values('s_name', 'count')
+    print(rs)
+    # <QuerySet [{'s_name': '钟鑫', 'count': 0}, {'s_name': '小皮', 'count': 0}, {'s_name': '李易峰', 'count': 0}, {'s_name': '小明', 'count': 0}, {'s_name': '小红', 'count': 0}, {'s_name': '叶子', 'count': 0}, {'s_name': '张林林', 'count': 0}]>
+
+
+
+
+    return HttpResponse('aaa')
