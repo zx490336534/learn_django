@@ -1,0 +1,16 @@
+{% extends 'blog/demo_base.html' %}
+{% block title %}
+    修改博客
+{% endblock %}
+{% block bodyblock %}
+    <h1>修改{{ blog.title }}</h1>
+    <form action="" method="POST"> {% csrf_token %} {# 防止跨域攻击#}
+        标题<input type="text" autocomplete="off" id="title"
+                 placeholder="" name='title' value="{{ blog.title }}"> <br> <br><br>
+        内容 <textarea name="content" id="content"
+                     placeholder="" cols="30" rows="10">{{ blog.content }}</textarea>
+        <br>
+        <button type="submit">提交修改</button>
+    </form>
+{% endblock %}
+t
