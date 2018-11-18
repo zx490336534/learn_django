@@ -22,4 +22,5 @@ urlpatterns = [
     path('music/', include('music.urls')),
     path('db/', include('db.urls')),
     path('blog/', include('blog.urls')),
+    path('get_post/', include('get_post.urls')),
 ]

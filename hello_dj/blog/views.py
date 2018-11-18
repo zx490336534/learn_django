@@ -33,17 +33,16 @@ def detail(request, blog_id):
 
 
 def edit(request, blog_id):
-    if request.method == 'GET':
-        blog = BlogModel.objects.get(id=blog_id)
-        return render(request, 'blog/demo_edit.html', context={'blog': blog})
-    elif request.method == 'POST':
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-        blog = BlogModel.objects.get(id=blog_id)
-        blog.title = title
-        blog.content = content
-        blog.save()
-        return render(request, 'blog/demo_detail.html', context={'blog': blog})
+    blog = BlogModel.objects.filter(id=blog_id)[0]
+    if request.method == 'POST':
+        if blog:
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+            blog.title = title
+            blog.content = content
+            blog.save()
+            return render(request, 'blog/demo_detail.html', context={'blog': blog})
+    return render(request, 'blog/demo_edit.html', context={'blog': blog})
 
 
 def delete(request, blog_id):
