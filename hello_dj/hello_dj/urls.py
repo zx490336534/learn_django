@@ -23,4 +23,5 @@ urlpatterns = [
     path('db/', include('db.urls')),
     path('blog/', include('blog.urls')),
     path('get_post/', include('get_post.urls')),
+    path('form_test/', include('form_test.urls')),
 ]

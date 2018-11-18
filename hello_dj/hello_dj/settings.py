@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'db',
     'blog',
     'get_post',
+    'form_test',
 ]
 
 MIDDLEWARE = [
