@@ -1,0 +1,60 @@
+请求与响应
+
+get 和 post
+form 
+method='get'    提交url 
+method='post'  
+
+视图:
+request.POST
+request.GET
+
+.get()
+['key']
+
+HTTP 协议  
+无状态
+
+浏览器 :  cookie   ---- sessionid
+服务器 : session
+
+
+登录注册:
+
+用户信息表----- 模型
+
+实现的功能:
+主页: 显示谁登录
+注册: 把用户的信息存入数据库
+登录: 验证登录用户, 保存登录状态
+
+form 表单功能
+1.生成html文件 (不常用)
+2.验证数据合法
+
+举例:
+email 
+
+request.session['username'] = username
+
+
+auth 权限系统
+
+admin 后台
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

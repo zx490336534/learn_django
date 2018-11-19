@@ -1,0 +1,84 @@
+模型 
+django ORM系统
+
+创建连接
+pymysql  
+import pymysql
+pymysql.install_as_MySQLdb()
+
+
+模型类  mysql库  映射关系
+类           ------        表
+属性       -------        字段
+model.XXfield    ------    类型
+
+类实例    -------     一条数据 	
+
+python  manage.py makemigrations    生成映射文件
+python  manage.py  migrate   在数据库中生成表
+
+单表: 增删改查
+增: 插入数据, 实例化对象,save()   ,   create    get_or_create
+查: all(), filter() query_set    get(条件),一条数据,单个实例对象,唯一性
+改: 先查找到了, 然后再改,属性重新复制,  query_set对象 update更新
+删: 先查, delete
+
+关于查询
+sql  where
+orm  filter(字段名__规则)
+常用参数
+auto_now = True  有修改数据的时候,修改时间,必须属性赋值
+auto_now_add = True   当数据插入的时间
+
+表关系
+
+mysql层面:
+一对多: 外键(foreignkey)
+一对一: 外键(foreignkey)+唯一键(unique)
+多对多: 中间表(外键+联合唯一键)
+
+orm层面:
+一对多: ForeignKey
+一对一: OneToOneField
+多对多: ManyToManyField
+
+department
+student
+stu_detail
+course
+course_student
+
+描述:
+学院(1) ---  学生(n)        一对多
+学生(1) ----  详情(1)         一对一
+学生(n) ----- 课程(n)             多对多
+
+计算机 = Department.objects.get(d_name='计算机学院')   # get单个实例对象
+计算机.d_id
+计算机.d_name
+计算机.student_set.all()    属于计算机学院的所有的学生
+
+小明 = Student.objects.filter(s_name='小明').first()      
+小明.s_id
+小明.s_name
+小明.dept    # 所属学院的实例对象  数据库 dept_id
+
+python  = Course.objects.get(c_name='python')
+python.c_id
+python.c_name
+python.student.all()     数据是在中间信息表里面的,查询报了python课程的所有学生
+
+小明.course_set.all()
+
+多表数据的操作:
+计算机.student_set      python.student    小明.course_set
+add()   create()  remove()  clean
+
+计算机.student_set.remove()     先保证你的学生信息表中,学院id那一栏数据允许为空,
+add()   数据已经存在于数据库
+create()   新建
+
+
+
+
+			
