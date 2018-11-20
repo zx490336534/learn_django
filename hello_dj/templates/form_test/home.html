@@ -16,6 +16,8 @@
 </script>
 欢迎 {{ name }} 登陆!!
 <br>
+request上下文：{{ request.myuser }} <br>
+上下文处理器：{{ myuser }} <br>
 <a href="{% url 'login_test' %}">登陆</a>
 <a href="{% url 'logout_test' %}">退出</a>
 

@@ -21,3 +21,6 @@ python manage.py migrate book
 
 7、调试
 python manage.py shell
+
+8、创建用户
+python manage.py  createsuperuser
