@@ -10,6 +10,7 @@ from django.contrib.auth.hashers import make_password, check_password
 def home(requset):
     # 显示谁登陆了
     # name = 'zhongxin'
+    print(requset.myuser)
     name = requset.session.get('username', '游客')
     return render(requset, 'form_test/home.html', {'name': name})
 
