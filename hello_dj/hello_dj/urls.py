@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path, include
-
+from book import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/', include('book.urls'),{'switch':'true'}),
@@ -25,3 +25,5 @@ urlpatterns = [
     path('get_post/', include('get_post.urls')),
     path('form_test/', include('form_test.urls')),
 ]
+
+handler404 = views.page_not_found

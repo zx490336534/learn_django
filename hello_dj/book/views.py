@@ -203,8 +203,12 @@ def f_test(request, **kwargs):
     rs = User.objects.filter(Q(name='xiaoming') | Q(name='xiaohong'))
     print(rs)
     # 查询名字为xiaoming 年龄不等于20的
-    rs = User.objects.filter(Q(name='xiaoming')&~Q(age=20))
+    rs = User.objects.filter(Q(name='xiaoming') & ~Q(age=20))
     print(rs)
-    rs = User.objects.filter(Q(name='xiaoming')&~Q(age=21))
+    rs = User.objects.filter(Q(name='xiaoming') & ~Q(age=21))
     print(rs)
     return HttpResponse('HHHHH')
+
+
+def page_not_found(request, **kwargs):
+    return render(request, 'book/404_test.html', status=404)
