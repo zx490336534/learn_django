@@ -3,6 +3,9 @@ from .forms import LoginForm, RegisterFrom
 from .models import UserModel
 from django.contrib.auth.hashers import make_password, check_password
 
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 
@@ -25,7 +28,8 @@ def home(requset):
 
 
 def logout_test(requset):
-    requset.session.flush()
+    # requset.session.flush()
+    logout(requset)
     return redirect(reverse('home'))
 
 
@@ -38,17 +42,24 @@ def login_test(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = UserModel.objects.filter(username=username)
+            # user = UserModel.objects.filter(username=username)
+            user = authenticate(username=username, password=password)
             if user:
-                if check_password(password, user[0].password):
-                    request.session['username'] = username
-                    return redirect(reverse('home'))
+                # if check_password(password, user[0].password):
+                #     request.session['username'] = username
+                login(request, user)  # 保存状态
+                next_url = request.GET.get('next')
+                print(next_url)
+                if next_url:
+                    return redirect(next_url)
                 else:
-                    return render(request, 'user_login/login.html', {'error': form.errors})
+                    return redirect(reverse('home'))
             else:
-                return redirect(reverse('register'))
+                return render(request, 'user_login/login.html', {'error': form.errors})
         else:
-            return redirect(reverse('login_test'))
+            return redirect(reverse('register'))
+    else:
+        return redirect(reverse('login_test'))
 
 
 def register(request):
@@ -62,10 +73,13 @@ def register(request):
             password = form.cleaned_data.get('password')
             password_repeat = form.cleaned_data.get('password_repeat')
             email = form.cleaned_data.get('email')
+            # if password == password_repeat:
+            #     password = make_password(password)  # 加密
+            #     UserModel.objects.create(username=username, password=password, email=email)
             if password == password_repeat:
-                password = make_password(password)  # 加密
-                UserModel.objects.create(username=username, password=password, email=email)
-                return redirect(reverse('home'))
+                User.objects.create_user(username=username, password=password, email=email)
+
+                return redirect(reverse('login_test'))
             else:
                 return redirect(reverse('register'))
         else:

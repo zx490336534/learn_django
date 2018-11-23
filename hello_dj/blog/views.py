@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from .models import BlogModel
-
+from django.contrib.auth.decorators import login_required,permission_required
 
 # Create your views here.
 
+@login_required
 def index(request):
     return render(request, 'blog/demo_index.html')
 
-
+@permission_required('blog.add_blogmodel')
 def add(request):
     if request.method == 'GET':
         return render(request, 'blog/demo_add.html')

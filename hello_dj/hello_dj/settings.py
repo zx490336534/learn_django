@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'music',
     'common',
     'db',
-    'blog',
-    'get_post',
-    'form_test',
+    'blog', #博客案例
+    'get_post', #请求与响应 GET POST COOKIE
+    'form_test', #定义了User模型
 ]
 
 MIDDLEWARE = [
@@ -137,3 +137,5 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+LOGIN_URL = '/form_test/login/'
